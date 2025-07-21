@@ -80,7 +80,6 @@ def salir():
     else:
         tablero.destroy()
 
-# ——— Funciones de línea que devuelven coords o None ———
 def horizontal():
     for z in range(4):
         for y in range(4):
@@ -210,7 +209,7 @@ def diagonal_cruzada_4():
         return coords
     return None
 
-# —— INICIALIZACIÓN TABLERO ——
+
 jugadas = [[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]],
            [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]],
            [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]],
@@ -227,7 +226,7 @@ tablero.resizable(0, 0)
 canvas = Canvas(tablero, width=1040, height=680)
 canvas.pack()
 
-# Frame para los botones del cubo 3D
+
 frame_botones = Frame(tablero)
 frame_botones.place(x=0, y=0, width=1040, height=640)
 
@@ -238,16 +237,13 @@ for z in range(4):
                                    z*160 + y*40 + 1,
                                    (3-z)*260 + (x+1)*65,
                                    z*160 + (y+1)*40,
-                                   outline="#0000ff", width=3)
+                                   outline="#ffffff", width=1)
 
-# SIN línea roja aquí
-#canvas.create_rectangle(1, 643, 1040, 680, outline="#ff0000", width=3)
 
-# Texto de turno
 texto_turno = Label(tablero, text="Jugador 1", font="arial, 20", fg="green")
 texto_turno.place(x=480, y=680)
 
-# Etiquetas de coordenadas SIEMPRE visibles
+
 texto_x = Label(tablero, text="X=0", font="arial, 18", fg="green")
 texto_x.place(x=10, y=40)
 texto_y = Label(tablero, text="Y=0", font="arial, 18", fg="green")
@@ -257,7 +253,7 @@ texto_z.place(x=10, y=100)
 texto_msg = Label(tablero, text="", font="arial, 20")
 texto_msg.place(x=320, y=10)
 
-# Botones del cubo 3D (en frame_botones, usando grid)
+
 botones = []
 for b in range(64):
     botones.append(crearBoton(' ', b))
@@ -269,15 +265,15 @@ for z in range(4):
             botones[contador].grid(row=y + z*4, column=x + (3-z)*4)
             contador += 1
 
-# Botón RESET
+
 btn_reset = Button(tablero, text="Reset", width=7, font=("Helvetica", 13), command=reiniciar)
-btn_reset.place(x=800, y=15)
+btn_reset.place(x=850, y=600)
 
-# Botón EXIT
+
 btn_exit = Button(tablero, text="Exit", width=7, font=("Helvetica", 13), command=salir)
-btn_exit.place(x=900, y=15)
+btn_exit.place(x=950, y=600)
 
-# Al inicio muestra coordenadas
+
 mostrar_coordenadas(0,0,0)
 
 tablero.mainloop()
